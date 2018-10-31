@@ -1,0 +1,31 @@
+
+#include <stdio.h> 
+#include <pthread.h> 
+#include <unistd.h> 
+  
+void* thread_fn(void* arg) 
+{ 
+    long id = (long)arg;
+   
+    printf("Starting thread% %d\n",id); 
+  
+   
+    sleep(5); 
+      
+    //signal 
+    printf("Exiting thread% %d\n",id);  
+    return NULL; 
+} 
+  
+  
+int main() 
+{ 
+    
+    pthread_t t1,t2; 
+    pthread_create(&t1,NULL,thread,NULL); 
+    pthread_create(&t2,NULL,thread,NULL); 
+    pthread_join(t1,NULL); 
+    pthread_join(t2,NULL); 
+    printf("Exit main \n"); 
+    return 0; 
+} 
